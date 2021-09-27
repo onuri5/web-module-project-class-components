@@ -26,12 +26,29 @@ class App extends React.Component {
     })
   }
 
+  handleToggle = (id) => {
+    console.log('handle toggle')
+    this.setState({
+      ...this.state,
+      todo: this.state.todo.map(item => {
+        if(item.id === id) {
+          return ({
+            ...item,
+            completed: !item.completed
+          })
+        } 
+        
+        return item;
+      })
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>Todos</h2>
         <Form handleAdd={this.handleAdd}/>
-        <List todo={this.state.todo} />
+        <List todo={this.state.todo} handleToggle={this.handleAdd}/>
       </div>
     );
   }
